@@ -18,19 +18,22 @@ count = 0
 
 while guess != secret_num:
     count = count + 1
-    guess = int(raw_input("Guess the number: "))
-    if guess > 100 or guess < 0:
-        print "invalid input, WHAT WERE YOU THINKING?! Enter a number between 1 and 100"
-        #guess = int(raw_input("Guess the number: ")) 
+    try:
+        guess = int(raw_input("Guess the number: "))
+        if guess > 100 or guess < 0:
+            print "invalid input, WHAT WERE YOU THINKING?! Enter a number between 1 and 100"
+            #guess = int(raw_input("Guess the number: ")) 
 
-    elif guess > secret_num:
-        too_high = guess
-        print "%d too high, guess again" % (guess)
+        elif guess > secret_num:
+            too_high = guess
+            print "%d too high, guess again" % (guess)
 
-    elif guess < secret_num:
-        too_low = guess
-        print "%d too low, guess again" % (guess)
+        elif guess < secret_num:
+            too_low = guess
+            print "%d too low, guess again" % (guess)
 
+    except ValueError:
+        print "Enter a valid number!"
 
 print "The guessed number is %d"%(guess)
 print "The number of guesses is %d" %(count)
