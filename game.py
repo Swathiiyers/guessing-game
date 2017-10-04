@@ -8,7 +8,7 @@ name = raw_input("What's your name? ")
 
 print"Choose a random number, %s" % (name)
 
-secret_num = random.randint(1, 100)
+# secret_num = random.randint(1, 100)
 #print " the secret number is %d" % (secret_num)
 
 # guess = None
@@ -16,13 +16,24 @@ secret_num = random.randint(1, 100)
 # too_low = 0
 # count = 0
 
+
+def continue_game(): 
+    user_choice = raw_input("Would you like to play again? Say 'yes' or 'no'").lower()
+    if user_choice == 'yes':
+        guessing_game()
+    elif user_choice == 'no':
+        return
+
+
+
 def guessing_game():
-    
+    secret_num = random.randint(1, 100)
     guess = None
     too_high = 100
     too_low = 0
+    best_count = 100
     count = 0
-
+    
     while guess != secret_num:
         count = count + 1
         try:
@@ -42,21 +53,19 @@ def guessing_game():
         except ValueError:
             print "Enter a valid number!"
 
-    print "The guessed number is %d"%(guess)
+    print "You got it! The number is %d"%(guess)
     print "The number of guesses is %d" %(count)
+    continue_game()
+
+    if count < best_count:
+        best_count = count
+        print "The best number of guesses you gave was %d" %(best_count)
+       
+        
     
 
 
 
-
-def continue_game(): 
-    user_choice = raw_input("Would you like to play again? Say 'yes' or 'no'").lower()
-    if user_choice == 'yes':
-        guessing_game()
-    elif user_choice == 'no':
-        return
-
-
 guessing_game()
-continue_game()
+
     
